@@ -1,10 +1,20 @@
-name: First action
-on: [push]
+name: PR Comment Action
+on:
+  issue_comment:
+    types:
+      - created
+
 jobs:
-  first-jobs:
+  pr_commented:
+
+    name: PR comment
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
-      - name: print hello
-        run: echo "helloooooooo"
-      - name: print be lo
-        run: echo "beeeee loooooo"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run your action
+        run: |
+          python app.py
+        
