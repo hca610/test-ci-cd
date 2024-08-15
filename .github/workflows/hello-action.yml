@@ -1,11 +1,12 @@
 name: PR Comment Action
 on:
-  issue_comment:
-    types:
-      - created
-  push:
-    branches:
-      - master
+  - push
+  # issue_comment:
+  #   types:
+  #     - created
+  # push:
+  #   branches:
+  #     - master
 
 jobs:
   pr_commented:
@@ -26,4 +27,4 @@ jobs:
         
       - name: print current branch
         run: |
-          echo ${{ github.head_ref  }}
+          echo "Source branch: ${{ github.head_ref }}"
