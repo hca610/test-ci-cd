@@ -12,7 +12,6 @@ jobs:
   pr_commented:
 
     name: PR comment
-    # if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -27,4 +26,4 @@ jobs:
         
       - name: print current branch
         run: |
-          echo "Source branch: ${{ github.head_ref }}"
+          echo "Source branch: ${{ github.ref}}"
