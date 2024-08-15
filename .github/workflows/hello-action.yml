@@ -26,4 +26,4 @@ jobs:
         
       - name: print current branch
         run: |
-          echo "Source branch: ${{ github.ref}}"
+          echo "Source branch: ${{ github.event.pull_request.base.ref }}"
