@@ -26,4 +26,4 @@ jobs:
         
       - name: print current branch
         run: |
-          echo ${{ github.ref }}
+          echo ${{ github.head_ref  }}
