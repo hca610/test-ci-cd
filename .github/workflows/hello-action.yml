@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-            ref: ${{ github.event.pull_request.base.ref }}
+            ref: ${{ github.head_ref }}
             fetch-depth: 0
 
       - name: Run your action
@@ -22,4 +22,4 @@ jobs:
         
       - name: print current branch
         run: |
-          echo "Source branch: ${{ github.event.pull_request.base.ref }}"
+          echo "Source branch: ${{ github.head_ref }}"
