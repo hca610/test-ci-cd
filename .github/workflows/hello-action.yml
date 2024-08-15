@@ -25,4 +25,4 @@ jobs:
         
       - name: print current branch
         run: |
-          echo ${{ github.ref_name }}
+          echo ${{ github.ref }}
