@@ -20,4 +20,3 @@ jobs:
       - name: print current branch
         run: |
           echo "Source branch: ${{ github.ref}}"
-          echo "Source branch: ${{ github.head_ref}}"
