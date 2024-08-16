@@ -1,13 +1,12 @@
 name: PR Comment Action
-on: [push, pull_request_review, pull_request_review_comment,  issue_comment]
-    # types:
-    #   - created
+on: [push]
 
 jobs:
   pr_commented:
     name: PR comment
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -17,7 +16,7 @@ jobs:
       - name: Run your action
         run: |
           python main.py
-        
+
       - name: print current branch
         run: |
-          echo "Source branch: ${{ github.ref}}"
+          echo "Source branch: ${{ github.ref }}"
