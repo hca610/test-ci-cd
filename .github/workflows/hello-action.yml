@@ -18,7 +18,7 @@ jobs:
 
       - name: print current branch
         run: |
-          echo "Source branch: ${{ github.ref}}"
+          echo "Source branch: ${{ github.ref_name }}"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
