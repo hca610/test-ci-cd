@@ -1,5 +1,8 @@
 BRANCH_NAME=$1
 IMAGE_NAME=hca610/hello-action:$BRANCH_NAME
+CONTAINER_NAME=app-$BRANCH_NAME
+
+CURRENT_IMAGE_ID=$(docker images -q $IMAGE_NAME)
 
 # Get random unused port
 while
@@ -12,8 +15,16 @@ done
 echo "\n------------------------- PULL IMAGE ------------------------- "
 docker pull hca610/hello-action:$BRANCH_NAME
 
-echo "\n------------------ REMOVE CONTAINER AND OLD IMAGE ------------------ "
-docker rm -f $(docker ps -q --filter ancestor=$IMAGE_NAME)
+NEW_IMAGE_ID=$(docker images -q $IMAGE_NAME)
+
+echo "\n------------------ STOP AND REMOVE CONTAINER ------------------ "
+docker stop $CONTAINER_NAME
+docker rm $CONTAINER_NAME
 
 echo "\n--------------- RUN NEW CONTAINER ON PORT $PORT --------------- "
-docker run -d --name app-$BRANCH_NAME -p $PORT:5000 $IMAGE_NAME
+docker run -d --name $CONTAINER_NAME -p $PORT:5000 $IMAGE_NAME
+
+if [ "$CURRENT_IMAGE_ID" != "$NEW_IMAGE_ID" ]; then
+    echo "\n------------------ REMOVE OLD IMAGE ------------------ "
+    docker rmi $CURRENT_IMAGE_ID
+fi
