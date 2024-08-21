@@ -7,11 +7,11 @@ CURRENT_IMAGE_ID=$(docker images -q $IMAGE_NAME)
 echo "\n------------------------- PULL IMAGE ------------------------- "
 docker pull hca610/hello-action:$BRANCH_NAME > /dev/null
 
-NEW_IMAGE_ID=$(docker images -q $IMAGE_NAME)
+REMOTE_IMAGE_ID=$(docker images -q $IMAGE_NAME)
 
-if [ "$CURRENT_IMAGE_ID" = "$NEW_IMAGE_ID" ]; then
+if [ "$CURRENT_IMAGE_ID" = "$REMOTE_IMAGE_ID" ]; then
     echo "Not found new version of image for $BRANCH_NAME branch"
-    # exit
+    exit
 fi
 
 echo "\n--------------------- CHECK CONTAINER STATUS --------------------- "
@@ -49,4 +49,4 @@ echo "Image name: $IMAGE_NAME"
 echo "Container name: $CONTAINER_NAME"
 echo "Port: $PORT"
 echo "Current image id: $CURRENT_IMAGE_ID"
-echo "New image id: $NEW_IMAGE_ID"
+echo "New image id: $REMOTE_IMAGE_ID"
