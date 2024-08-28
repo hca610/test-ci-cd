@@ -21,6 +21,10 @@ jobs:
           echo "github.ref_name: ${{ github.ref_name }}"
           echo "github.ref: ${{ github.ref}}"
           echo "base.ref: ${{ github.base_ref}}"
+          echo "head.ref: ${{ github.head_ref}}"
+          echo "actionref: ${{ github.action_ref}}"
+          echo "workflow_ref: ${{ github.workflow_ref}}"
+
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
