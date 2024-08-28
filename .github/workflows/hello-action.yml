@@ -1,5 +1,7 @@
 name: PR Comment Action
-on: [push]
+on: 
+  issue_comment:
+    types: [created]
 
 jobs:
   pr_commented:
@@ -12,13 +14,11 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0
 
-      - name: Run your action
-        run: |
-          python main.py
-
       - name: print current branch
         run: |
-          echo "Source branch: ${{ github.ref_name }}"
+          echo "github.ref_name: ${{ github.ref_name }}"
+          echo "github.ref: ${{ github.ref}}"
+          echo "base.ref: ${{ github.base_ref}}"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
